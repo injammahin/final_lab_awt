@@ -15,6 +15,20 @@ const ConnectBank = () => {
 
   const handleSubmit = async () => {
     try {
+      // Basic form validation
+      if (
+        !description ||
+        !payee ||
+        !category ||
+        !spend ||
+        !received ||
+        !userId
+      ) {
+        setErrorMessage("All fields are required.");
+        setSuccessMessage("");
+        return;
+      }
+
       const response = await axios.post("http://localhost:2000/connect/bank", {
         description,
         payee,
@@ -23,8 +37,9 @@ const ConnectBank = () => {
         received,
         userId,
       });
+
       console.log(response.data);
-      setSuccessMessage("Signup successfully");
+      setSuccessMessage("Signup successful");
       setErrorMessage("");
     } catch (error) {
       console.error("Error submitting connect bank details", error);
