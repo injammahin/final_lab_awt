@@ -1,47 +1,42 @@
-// pages/connect/update/[id].tsx
+// pages/UpdateUserProfile.jsx
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-const UpdateUser = () => {
+const UpdateUserProfile = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const [user, setUser] = useState({
-    description: "",
-    payee: "",
-    category: "",
-    spend: "",
-    received: "",
-    userId: "",
-  });
+  const [description, setDescription] = useState("");
+  // Add other state variables
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (id && router.isReady && typeof window !== "undefined") {
-          const response = await axios.get(
-            `http://localhost:2000/connect/${id}`
-          );
-          const userData = response.data;
-          setUser(userData);
-        }
+        const response = await axios.get(`http://localhost:2000/connect/${id}`);
+        // Set state variables with fetched data
+        setDescription(response.data.description);
+        // Set other variables
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
-    fetchData();
-  }, [id, router.isReady]);
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.put(
-        `http://localhost:2000/connect/${id}`,
-        user
-      );
+      // Make a request to update the user information
+      const response = await axios.put(`http://localhost:2000/connect/${id}`, {
+        description,
+        // Add other variables
+      });
 
+      // Handle the response accordingly
       console.log("User updated successfully:", response.data);
     } catch (error) {
       console.error("Error updating user information:", error);
@@ -50,20 +45,10 @@ const UpdateUser = () => {
 
   return (
     <div>
-      <h1>Update User Information</h1>
-      <label>
-        Description:
-        <input
-          type="text"
-          value={user.description}
-          onChange={(e) => setUser({ ...user, description: e.target.value })}
-        />
-      </label>
-      {/* Repeat similar input fields for other properties */}
-      <br />
+      {/* Form for updating user details */}
       <button onClick={handleUpdate}>Update User</button>
     </div>
   );
 };
 
-export default UpdateUser;
+export default UpdateUserProfile;
