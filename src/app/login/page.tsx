@@ -2,12 +2,14 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async () => {
     try {
@@ -15,9 +17,13 @@ const SigninPage = () => {
         email,
         password,
       });
+
       console.log(response.data);
       setSuccessMessage("Login successful");
-      setErrorMessage("");
+      localStorage.setItem("token", response.data.token);
+
+      // Redirect to the profile page after successful login
+      router.push("/profile");
     } catch (error) {
       console.error("Error logging in:", error);
       setErrorMessage(
