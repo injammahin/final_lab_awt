@@ -19,7 +19,7 @@ const SigninPage = () => {
       });
 
       console.log(response.data);
-      setSuccessMessage("Login successful");
+      setSuccessMessage(response.data.message); // Assuming the message is returned from the server
       localStorage.setItem("token", response.data.token);
 
       // Redirect to the profile page after successful login
