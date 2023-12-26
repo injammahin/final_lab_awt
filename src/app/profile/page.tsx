@@ -19,9 +19,6 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("====================================");
-        console.log(localStorage.getItem("token"));
-        console.log("====================================");
         const response = await axios.get("http://localhost:2000/auth/profile", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
