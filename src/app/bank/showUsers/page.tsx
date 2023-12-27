@@ -45,26 +45,26 @@ const ProfilePage = () => {
             Bank Transaction
           </h2>
         </div>
-        <div className="mt-8 space-y-6">
+        <div className="mt-8 space-y-6 pt-3 py-4 ">
           {userDetails.Connect_bank && (
-            <div className="bg-white p-6 rounded shadow-md">
+            <div className="bg-white p-6 rounded shadow-md bg-gray-400">
               <div key={userDetails.Connect_bank.id}>
-                <p className="text-gray-800">
+                <p className="text-gray-800 font-semibold">
                   Category: {userDetails.Connect_bank.category}
                 </p>
-                <p className="text-gray-800">
+                <p className="text-gray-800 font-semibold">
                   Description: {userDetails.Connect_bank.description}
                 </p>
-                <p className="text-gray-800">
+                <p className="text-gray-800 font-semibold">
                   Payee: {userDetails.Connect_bank.payee}
                 </p>
-                <p className="text-gray-800">
+                <p className="text-gray-800 font-semibold">
                   Received: {userDetails.Connect_bank.received}
                 </p>
-                <p className="text-gray-800">
+                <p className="text-gray-800 font-semibold">
                   Spend: {userDetails.Connect_bank.spend}
                 </p>
-                <p className="text-gray-800">
+                <p className="text-gray-800 font-semibold">
                   UserID: {userDetails.Connect_bank.userId}
                 </p>
               </div>
