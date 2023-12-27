@@ -14,7 +14,7 @@ const LogoutPage = () => {
         await axios.post("http://localhost:2000/auth/signout");
 
         // Clear local storage or any other client-side tokens/session data
-        localStorage.removeItem("id");
+        await localStorage.clear();
 
         // Redirect to the home page after logout
         router.push("/");
@@ -38,9 +38,9 @@ const LogoutPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <button className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Logging out...
-          </h2>
+          </button>
         </div>
       </div>
     </div>
