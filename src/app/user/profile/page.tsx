@@ -79,6 +79,9 @@ const ProfilePage = () => {
             </div>
           )}
         </div>
+        <a href="/user/editUser" className=" btn text-blue-500 hover:underline">
+          Edit Profile
+        </a>
       </div>
     </div>
   );
