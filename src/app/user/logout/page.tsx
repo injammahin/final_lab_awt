@@ -1,35 +1,47 @@
-// pages/logout.tsx
-import React from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
+// pages/auth/LogoutPage.tsx
+"use client";
+import { useEffect } from "react";
+import axios, { AxiosError } from "axios"; // Import AxiosError from axios
+import { useRouter } from "next/navigation";
 
-const LogoutPage: React.FC = () => {
+const LogoutPage = () => {
   const router = useRouter();
-  const { logout } = useAuth();
 
-  const handleLogout = async () => {
-    try {
-      // Perform logout logic (update auth context, clear tokens, etc.)
-      await logout();
-      // Redirect to the home page after logout
-      router.push("/");
-    } catch (error) {
-      console.error("Logout failed:", error.message);
-      // Handle logout error if necessary
-    }
-  };
+  useEffect(() => {
+    const handleLogout = async () => {
+      try {
+        // Call your server-side logout endpoint
+        await axios.post("http://localhost:2000/auth/signout");
+
+        // Clear local storage or any other client-side tokens/session data
+        localStorage.removeItem("id");
+
+        // Redirect to the home page after logout
+        router.push("/");
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          // Handle AxiosError specifically
+          console.error("Error logging out:", error.message);
+        } else {
+          // Handle other types of errors
+          console.error("Unknown error logging out:", error);
+        }
+        // Handle logout error if necessary
+      }
+    };
+
+    // Call the logout function when the component mounts
+    handleLogout();
+  }, [router]);
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Logout Page</h1>
-        <p className="text-gray-600 mb-8">Are you sure you want to logout?</p>
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full focus:outline-none"
-        >
-          Logout
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Logging out...
+          </h2>
+        </div>
       </div>
     </div>
   );
