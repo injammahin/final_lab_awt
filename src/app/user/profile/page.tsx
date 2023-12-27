@@ -1,4 +1,4 @@
-// pages/auth/ProfilePage.tsx
+// ProfilePage.tsx
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -9,8 +9,8 @@ interface UserDetails {
   phone: string;
   email: string;
   companyName: string;
-  Connect_bank: any[]; // You need to define the actual type for Connect_bank
-  Payments: any[]; // You need to define the actual type for Payments
+  Connect_bank: any[];
+  Payments: any[];
 }
 
 const ProfilePage = () => {
@@ -41,41 +41,34 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="text-3xl font-extrabold text-gray-900 text-center">
             User Profile
           </h2>
         </div>
-        <div className="mt-8 space-y-6">
-          <p>ID: {userDetails.id}</p>
-          <p>Name: {userDetails.name}</p>
-          <p>Email: {userDetails.email}</p>
-          <p>Phone: {userDetails.phone}</p>
-          <p>Company Name: {userDetails.companyName}</p>
-          {/* Additional details based on your actual user data structure */}
-          {/* Example for Connect_bank */}
-
-          {/* /////////// */}
-          {/* {userDetails.Connect_bank && (
-            <div>
-              <h3>bank details:</h3>
-              {userDetails.Connect_bank.map((connect) => (
-                <div key={connect.id}>
-                  <p>category: {connect.category}</p>
-                  <p>description: {connect.description}</p>
-                  <p>payee: {connect.payee}</p>
-                  <p>received: {connect.received}</p>
-                  <p>spend: {connect.spend}</p>
-                  <p>userId: {connect.userId}</p>
-                </div>
-              ))}
-            </div>
-          )} */}
-
-          {/* Example for Payments */}
+        <div className="space-y-4">
+          <p className="text-sm text-gray-700">
+            <span className="font-bold">ID:</span> {userDetails.id}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-bold">Name:</span> {userDetails.name}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-bold">Email:</span> {userDetails.email}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-bold">Phone:</span> {userDetails.phone}
+          </p>
+          <p className="text-sm text-gray-700">
+            <span className="font-bold">Company Name:</span>{" "}
+            {userDetails.companyName}
+          </p>
         </div>
-        <a href="/user/editUser" className=" btn text-blue-500 hover:underline">
+        <a
+          href="/user/editUser"
+          className="block w-full text-center text-blue-500 hover:underline"
+        >
           Edit Profile
         </a>
       </div>
