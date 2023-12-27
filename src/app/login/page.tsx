@@ -18,9 +18,9 @@ const SigninPage = () => {
         password,
       });
 
-      console.log(response.data);
+      console.log(response.data.user);
       setSuccessMessage(response.data.message); // Assuming the message is returned from the server
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("id", response.data.user.id);
 
       // Redirect to the profile page after successful login
       router.push("/profile");

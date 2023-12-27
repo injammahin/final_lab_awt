@@ -21,7 +21,7 @@ const ProfilePage = () => {
       try {
         const response = await axios.get("http://localhost:2000/auth/profile", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            id: `${localStorage.getItem("id")}`,
           },
         });
         const userData = response.data as UserDetails;
