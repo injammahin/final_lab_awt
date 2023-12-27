@@ -76,29 +76,28 @@ const ProfilePage = () => {
           {/* Example for Payments */}
           {userDetails.Payments && (
             <div>
-              {userDetails.Payments.map((payment) => (
-                <li key={payment.id}>
-                  <div className="bg-slate-400 shadow-xl rounded-lg pl-2">
-                    <p className="py-1 font-semibold">
-                      Payment Way: {payment.paymentway}
-                    </p>
-                    <p className="py-1 font-semibold">
-                      reference: {payment.reference}
-                    </p>
-                    <p className="py-1 font-semibold">
-                      Amount: {payment.amount}
-                    </p>
-                    <p className="py-1 font-semibold">due: {payment.due}</p>
-                    {/* Include other properties */}
-                  </div>
-                </li>
-              ))}
+              <ul>
+                {userDetails.Payments.map((payment) => (
+                  <li key={payment.id} className="mb-4">
+                    <div className="bg-slate-400 shadow-xl rounded-lg pl-2">
+                      <p className="py-1 font-semibold">
+                        Payment Way: {payment.paymentway}
+                      </p>
+                      <p className="py-1 font-semibold">
+                        reference: {payment.reference}
+                      </p>
+                      <p className="py-1 font-semibold">
+                        Amount: {payment.amount}
+                      </p>
+                      <p className="py-1 font-semibold">due: {payment.due}</p>
+                      {/* Include other properties */}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
-        <a href="user/editUser" className=" btn text-blue-500 hover:underline">
-          Edit Profile
-        </a>
       </div>
     </div>
   );

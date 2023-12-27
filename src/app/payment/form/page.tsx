@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface PaymentFormProps {
   onSuccess: () => void;
@@ -94,6 +95,14 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ onSuccess }) => {
       >
         Submit Payment
       </button>
+      <h3>
+        want to show all the payment details?
+        <button className="bg-green-400 px-3 py-2 rounded-xl hover:bg-green-600">
+          <a className="font-bold " href="/payment/showdetails">
+            ShowDetails
+          </a>
+        </button>
+      </h3>
     </form>
   );
 };

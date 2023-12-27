@@ -1,46 +1,79 @@
-// pages/UsersPage.tsx
+// pages/auth/ProfilePage.tsx
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface UserDetails {
-  id: number;
-  description: string;
-  payee: string;
-  category: string;
-  spend: string;
-  received: string;
+  Connect_bank: any[];
 }
 
-const UsersPage = () => {
-  const [users, setUsers] = useState<UserDetails[]>([]);
+const ProfilePage = () => {
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:2000/connect/all-users");
-        const data = await response.json();
-        setUsers(Array.isArray(data) ? data : []); // Check if data is an array
+        const response = await axios.get("http://localhost:2000/auth/profile", {
+          headers: {
+            id: `${localStorage.getItem("id")}`,
+          },
+        });
+        const userData = response.data as UserDetails;
+        console.log("ok", userData);
+        setUserDetails(userData);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching user data:", error);
       }
     };
 
-    fetchUsers();
+    fetchData();
   }, []);
 
+  if (!userDetails) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>All Users</h1>
-      <ul>
-        {users.map((userDetails) => (
-          <li key={userDetails.id}>
-            {/* Display user information here */}
-            <p>{`ID: ${userDetails.id}, Description: ${userDetails.description}, Payee: ${userDetails.payee}, Category: ${userDetails.category}`}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Bank Transaction
+          </h2>
+        </div>
+        <div className="mt-8 space-y-6">
+          {userDetails.Connect_bank && (
+            <div className="bg-white p-6 rounded shadow-md">
+              <div key={userDetails.Connect_bank.id}>
+                <p className="text-gray-800">
+                  Category: {userDetails.Connect_bank.category}
+                </p>
+                <p className="text-gray-800">
+                  Description: {userDetails.Connect_bank.description}
+                </p>
+                <p className="text-gray-800">
+                  Payee: {userDetails.Connect_bank.payee}
+                </p>
+                <p className="text-gray-800">
+                  Received: {userDetails.Connect_bank.received}
+                </p>
+                <p className="text-gray-800">
+                  Spend: {userDetails.Connect_bank.spend}
+                </p>
+                <p className="text-gray-800">
+                  UserID: {userDetails.Connect_bank.userId}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default UsersPage;
+export default ProfilePage;
