@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
               Sign In
             </a>
             <a
-              href="/user/login"
+              href="/user/registration"
               className="bg-green-500 text-white rounded-full px-6 py-3 hover:bg-green-600 hover:text-black hover:underline"
             >
               Sign Up
