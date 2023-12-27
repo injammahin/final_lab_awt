@@ -56,6 +56,25 @@ const ProfilePage = () => {
           {/* Additional details based on your actual user data structure */}
           {/* Example for Connect_bank */}
 
+          {/* /////////// */}
+          {userDetails.Connect_bank && (
+            <div>
+              <h3>bank details:</h3>
+              {userDetails.Connect_bank.map((bank) => (
+                <div key={bank.id}>
+                  <p>category: {bank.category}</p>
+                  <p>description: {bank.description}</p>
+                  <p>payee: {bank.payee}</p>
+                  <p>received: {bank.received}</p>
+                  <p>spend: {bank.spend}</p>
+                  <p>userId: {bank.userId}</p>
+
+                  {/* Include other properties */}
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Example for Payments */}
           {userDetails.Payments && (
             <div>
