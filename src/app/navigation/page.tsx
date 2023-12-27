@@ -7,30 +7,30 @@ const Navber = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="">
           <div className="hidden lg:flex items-center space-x-1">
-            <a
+            {/* <a
               href="/pages"
               className="bg-orange-500 flex items-center text-white rounded-full px-4 py-2 hover:bg-orange-600 hover:text-black hover:underline"
             >
               Home
-            </a>
+            </a> */}
             <Link
-              href="/login"
+              href="/user/login"
               className="bg-orange-500 text-white rounded-full px-4 py-2 hover:bg-orange-600 hover:text-black hover:underline"
             >
               Sign In
             </Link>
             <Link
-              href="/registration"
+              href="/user/registration"
               className="bg-orange-500 text-white rounded-full px-4 py-2 hover:bg-orange-600 hover:text-black hover:underline"
             >
               Sign Up
             </Link>
-            <Link
+            {/* <Link
               href="/bank/connect"
               className="bg-orange-500 text-white rounded-full px-4 py-2 hover:bg-orange-600 hover:text-black hover:underline"
             >
               connect Bank
-            </Link>
+            </Link> */}
             <Link
               href="/"
               className="bg-orange-500 text-white rounded-full px-4 py-2 hover:bg-orange-600 hover:text-black hover:underline"

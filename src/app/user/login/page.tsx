@@ -23,7 +23,7 @@ const SigninPage = () => {
       localStorage.setItem("id", response.data.user.id);
 
       // Redirect to the profile page after successful login
-      router.push("/profile");
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error logging in:", error);
       setErrorMessage(
