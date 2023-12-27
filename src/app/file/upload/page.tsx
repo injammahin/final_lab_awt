@@ -1,56 +1,72 @@
+// pages/upload.tsx
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 
-const FileUploadComponent = () => {
-  const [file, setFile] = useState(null);
-  const [uploadedFilePath, setUploadedFilePath] = useState(null);
+const UploadPage: React.FC = () => {
+  const [file, setFile] = useState<File | null>(null);
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-  };
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
 
-  const handleUpload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await axios.post(
-        `http://localhost:2000/payment/payment-slip/upload//${userId}`,
-        userData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      console.log("File uploaded successfully:", response.data);
-
-      // Set the uploaded file path for display
-      setUploadedFilePath(response.data.filePath);
-    } catch (error) {
-      console.error("Error uploading file:", error);
+    if (selectedFile && selectedFile.type === "application/pdf") {
+      setFile(selectedFile);
+    } else {
+      console.error("Invalid file format. Please select a PDF file.");
     }
   };
 
-  const handleShowFile = () => {
-    // Open the uploaded file in a new window or tab
-    window.open(uploadedFilePath, "_blank");
+  const handleUpload = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!file) {
+      console.error("No file selected for upload");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("payslip", file);
+
+      const response = await fetch(
+        "http://localhost:3000/payment/payment-slip/upload/10",
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        const errorText: string = await response.text();
+        throw new Error(
+          `Upload failed with status ${response.status}: ${errorText}`
+        );
+      }
+
+      console.log("File uploaded successfully");
+    } catch (error: any) {
+      console.error("Error during file upload:", error.message);
+    }
   };
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload File</button>
-      {uploadedFilePath && (
+      <h1>File Upload Page</h1>
+      <form onSubmit={handleUpload}>
         <div>
-          <button onClick={handleShowFile}>Show File</button>
+          <label htmlFor="fileInput">Select PDF File:</label>
+          <input
+            type="file"
+            id="fileInput"
+            accept=".pdf"
+            onChange={handleFileChange}
+          />
         </div>
-      )}
+        <div>
+          <button type="submit">Upload</button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default FileUploadComponent;
+export default UploadPage;

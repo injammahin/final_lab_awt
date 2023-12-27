@@ -55,31 +55,24 @@ const ProfilePage = () => {
           <p>Company Name: {userDetails.companyName}</p>
           {/* Additional details based on your actual user data structure */}
           {/* Example for Connect_bank */}
-          {userDetails.Connect_bank && (
-            <div>
-              <h3>Connect Bank Details:</h3>
-              {userDetails.Connect_bank.map((bank) => (
-                <div key={bank.id}>
-                  <p>Description: {bank.description}</p>
-                  {/* Include other properties */}
-                </div>
-              ))}
-            </div>
-          )}
+
           {/* Example for Payments */}
           {userDetails.Payments && (
             <div>
               <h3>Payments:</h3>
               {userDetails.Payments.map((payment) => (
                 <div key={payment.id}>
+                  <p>Payment Way: {payment.paymentway}</p>
+                  <p>reference: {payment.reference}</p>
                   <p>Amount: {payment.amount}</p>
+                  <p>due: {payment.due}</p>
                   {/* Include other properties */}
                 </div>
               ))}
             </div>
           )}
         </div>
-        <a href="/user/editUser" className=" btn text-blue-500 hover:underline">
+        <a href="user/edituser" className=" btn text-blue-500 hover:underline">
           Edit Profile
         </a>
       </div>
