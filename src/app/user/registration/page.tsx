@@ -2,6 +2,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -142,6 +143,15 @@ const SignupPage = () => {
           <p className="text-green-500 mt-2">{successMessage}</p>
         )}
         {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+          Already have an account ?
+          <a
+            href="./login"
+            className="text-blue-600 hover:underline dark:text-blue-500"
+          >
+            Sign in
+          </a>
+        </p>
       </div>
     </div>
   );

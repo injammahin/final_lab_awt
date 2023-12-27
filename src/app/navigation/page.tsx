@@ -38,7 +38,7 @@ const Navber = () => {
               Logout
             </Link>
 
-            <div className="group px-96 inline-block relative">
+            {/* <div className="group px-96 inline-block relative">
               <button className="bg-orange-500 text-white rounded-full px-4 py-2 hover:bg-orange-600 hover:text-black ">
                 User Actions
               </button>
@@ -53,7 +53,7 @@ const Navber = () => {
                   <Link href="/edit">Edit</Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
