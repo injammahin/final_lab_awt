@@ -49,22 +49,37 @@ const UploadPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>File Upload Page</h1>
-      <form onSubmit={handleUpload}>
-        <div>
-          <label htmlFor="fileInput">Select PDF File:</label>
-          <input
-            type="file"
-            id="fileInput"
-            accept=".pdf"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div>
-          <button type="submit">Upload</button>
-        </div>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <h1 className="text-3xl font-extrabold text-gray-900 text-center">
+          File Upload Page
+        </h1>
+        <form onSubmit={handleUpload} className="mt-8 space-y-6">
+          <div className="mb-4">
+            <label
+              htmlFor="fileInput"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Select PDF File:
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              accept=".pdf"
+              onChange={handleFileChange}
+              className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 w-full"
+            >
+              Upload
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

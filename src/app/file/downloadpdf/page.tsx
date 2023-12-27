@@ -18,7 +18,11 @@ export default function Home() {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
+    <button
+      className=" font-semibold font-serif bg-green-600  px-8 py-4 rounded-xl"
+      type="button"
+      onClick={handleClick}
+    >
       Download pdf
     </button>
   );
