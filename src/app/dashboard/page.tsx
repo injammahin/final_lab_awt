@@ -5,7 +5,7 @@ import Link from "next/link";
 const Dashboard = () => {
   return (
     <aside className="bg-gray-800 text-white w-64 min-h-screen">
-      <div className="p-4">Your Logo</div>
+      <div className="p-4"></div>
       <nav className="mt-4">
         <Link
           href="/user/profile"
