@@ -9,14 +9,17 @@ const EditUserPage = () => {
     phone: "",
     companyName: "",
   });
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [userId, setUserId] = useState<string | null>(null);
 
+  //const [userId, setUserId] = useState<string | null>(null);
+  let userId = localStorage.getItem("id");
+  console.log(userId);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:2000/auth/profile`, {
-          headers: { id: userId },
+          headers: {
+            id: `${localStorage.getItem("id")}`,
+          },
         });
         const user = response.data;
         setUserData(user);
@@ -38,13 +41,12 @@ const EditUserPage = () => {
         userData
       );
       console.log("Edit response:", response.data);
-      setIsEditMode(false);
     } catch (error) {
       console.error("Error editing user data:", error);
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
     setUserData((prevUserData) => ({
       ...prevUserData,
@@ -82,7 +84,6 @@ const EditUserPage = () => {
                         onChange={handleInputChange}
                       />
                     </div>
-
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Mobile No
@@ -109,7 +110,6 @@ const EditUserPage = () => {
                         onChange={handleInputChange}
                       />
                     </div>
-
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Company Name
@@ -124,22 +124,12 @@ const EditUserPage = () => {
                       />
                     </div>
 
-                    {isEditMode ? (
-                      <button
-                        type="submit"
-                        className="w-full text-black bg-indigo-300 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-indigo-700 dark:focus:ring-primary-800"
-                      >
-                        Save Changes
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className="w-full text-black bg-indigo-300 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-indigo-700 dark:focus:ring-primary-800"
-                        onClick={() => setIsEditMode(true)}
-                      >
-                        Edit
-                      </button>
-                    )}
+                    <button
+                      type="submit"
+                      className="w-full text-black bg-indigo-300 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-indigo-700 dark:focus:ring-primary-800"
+                    >
+                      Edit
+                    </button>
                   </form>
                 </div>
               </div>

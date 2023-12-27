@@ -44,15 +44,15 @@ const ProfilePage = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            User Profile
+            payment details
           </h2>
         </div>
         <div className="mt-8 space-y-6">
-          <p>ID: {userDetails.id}</p>
+          {/* <p>ID: {userDetails.id}</p>
           <p>Name: {userDetails.name}</p>
           <p>Email: {userDetails.email}</p>
           <p>Phone: {userDetails.phone}</p>
-          <p>Company Name: {userDetails.companyName}</p>
+          <p>Company Name: {userDetails.companyName}</p> */}
           {/* Additional details based on your actual user data structure */}
           {/* Example for Connect_bank */}
 
@@ -74,8 +74,29 @@ const ProfilePage = () => {
           )} */}
 
           {/* Example for Payments */}
+          {userDetails.Payments && (
+            <div>
+              {userDetails.Payments.map((payment) => (
+                <li key={payment.id}>
+                  <div className="bg-slate-400 shadow-xl rounded-lg pl-2">
+                    <p className="py-1 font-semibold">
+                      Payment Way: {payment.paymentway}
+                    </p>
+                    <p className="py-1 font-semibold">
+                      reference: {payment.reference}
+                    </p>
+                    <p className="py-1 font-semibold">
+                      Amount: {payment.amount}
+                    </p>
+                    <p className="py-1 font-semibold">due: {payment.due}</p>
+                    {/* Include other properties */}
+                  </div>
+                </li>
+              ))}
+            </div>
+          )}
         </div>
-        <a href="/user/editUser" className=" btn text-blue-500 hover:underline">
+        <a href="user/editUser" className=" btn text-blue-500 hover:underline">
           Edit Profile
         </a>
       </div>
