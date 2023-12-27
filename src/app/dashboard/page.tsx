@@ -8,12 +8,6 @@ const Dashboard = () => {
       <div className="p-4">Your Logo</div>
       <nav className="mt-4">
         <Link
-          href="/dashboard"
-          className="block py-2 px-4 text-white hover:bg-gray-700"
-        >
-          Dashboard
-        </Link>
-        <Link
           href="/user/profile"
           className="block py-2 px-4 text-white hover:bg-gray-700"
         >
