@@ -1,7 +1,6 @@
-// pages/auth/LogoutPage.tsx
 "use client";
 import { useEffect } from "react";
-import axios, { AxiosError } from "axios"; // Import AxiosError from axios
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
 const LogoutPage = () => {
@@ -10,27 +9,20 @@ const LogoutPage = () => {
   useEffect(() => {
     const handleLogout = async () => {
       try {
-        // Call your server-side logout endpoint
         await axios.post("http://localhost:2000/auth/signout");
 
-        // Clear local storage or any other client-side tokens/session data
         await localStorage.clear();
 
-        // Redirect to the home page after logout
         router.push("/");
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
-          // Handle AxiosError specifically
           console.error("Error logging out:", error.message);
         } else {
-          // Handle other types of errors
           console.error("Unknown error logging out:", error);
         }
-        // Handle logout error if necessary
       }
     };
 
-    // Call the logout function when the component mounts
     handleLogout();
   }, [router]);
 

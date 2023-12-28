@@ -1,4 +1,3 @@
-// pages/auth/SigninPage.tsx
 "use client";
 import { useState } from "react";
 import axios from "axios";
@@ -19,10 +18,9 @@ const SigninPage = () => {
       });
 
       console.log(response.data.user);
-      setSuccessMessage(response.data.message); // Assuming the message is returned from the server
+      setSuccessMessage(response.data.message);
       localStorage.setItem("id", response.data.user.id);
 
-      // Redirect to the profile page after successful login
       router.push("/dashboard");
     } catch (error) {
       console.error("Error logging in:", error);

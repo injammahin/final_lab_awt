@@ -1,4 +1,3 @@
-// pages/auth/SignupPage.tsx
 "use client";
 import { useState } from "react";
 import axios from "axios";
@@ -58,7 +57,6 @@ const SignupPage = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            {/* Add similar input fields for other properties */}
             <div>
               <label htmlFor="phone" className="sr-only">
                 phone
@@ -75,7 +73,6 @@ const SignupPage = () => {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-            {/* Add similar input fields for other properties */}
             <div>
               <label htmlFor="email" className="sr-only">
                 email
@@ -92,7 +89,6 @@ const SignupPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            {/* Add similar input fields for other properties */}
             <div>
               <label htmlFor="password" className="sr-only">
                 password
@@ -109,7 +105,6 @@ const SignupPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {/* Add similar input fields for other properties */}
             <div>
               <label htmlFor="companyName" className="sr-only">
                 companyName
@@ -126,7 +121,6 @@ const SignupPage = () => {
                 onChange={(e) => setCompanyName(e.target.value)}
               />
             </div>
-            {/* Add similar input fields for other properties */}
           </div>
 
           <div>

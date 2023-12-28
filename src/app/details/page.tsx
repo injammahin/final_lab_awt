@@ -1,4 +1,3 @@
-// pages/auth/ProfilePage.tsx
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -9,8 +8,8 @@ interface UserDetails {
   phone: string;
   email: string;
   companyName: string;
-  Connect_bank: any[]; // You need to define the actual type for Connect_bank
-  Payments: any[]; // You need to define the actual type for Payments
+  Connect_bank: any[];
+  Payments: any[];
 }
 
 const ProfilePage = () => {
@@ -52,27 +51,24 @@ const ProfilePage = () => {
           <p>Email: {userDetails.email}</p>
           <p>Phone: {userDetails.phone}</p>
           <p>Company Name: {userDetails.companyName}</p>
-          {/* Additional details based on your actual user data structure */}
-          {/* Example for Connect_bank */}
+
           {userDetails.Connect_bank && (
             <div>
               <h3>Connect Bank Details:</h3>
               {userDetails.Connect_bank.map((bank) => (
                 <div key={bank.id}>
                   <p>Description: {bank.description}</p>
-                  {/* Include other properties */}
                 </div>
               ))}
             </div>
           )}
-          {/* Example for Payments */}
+
           {userDetails.Payments && (
             <div>
               <h3>Payments:</h3>
               {userDetails.Payments.map((payment) => (
                 <div key={payment.id}>
                   <p>Amount: {payment.amount}</p>
-                  {/* Include other properties */}
                 </div>
               ))}
             </div>

@@ -1,4 +1,3 @@
-// pages/registrations.tsx
 "use client";
 import axios from "axios";
 import React, { useState } from "react";
@@ -15,7 +14,6 @@ const ConnectBank = () => {
 
   const handleSubmit = async () => {
     try {
-      // Basic form validation
       if (
         !description ||
         !payee ||
